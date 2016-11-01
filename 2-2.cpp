@@ -10,8 +10,8 @@
 using std::cin;using std::cout;using std::swap;
 void printArray(float a[], int N);
 void randomArray(float a[], int N, int min, int max);
-void shiftArrayToTheRight(float a[], int N);
-void shiftArrayToTheLeft(float a[], int N);
+void shiftArrayToTheRight(float a[],float b[], int N);
+void shiftArrayToTheLeft(float a[],float b[], int N);
 const int N = 10;
 int main()
 {
@@ -19,36 +19,42 @@ int main()
 	srand(time(0));
 	setlocale(LC_ALL, "Russian");
 
-	float a[N];
+	float a[N],b[N];
 
 	randomArray(a, N, -N, N);
 	cout << "Исходный массив:\n";
 	printArray(a, N);
 
-	shiftArrayToTheRight(a, N);
+	shiftArrayToTheRight(a,b, N);
 	cout << "Сдвинутый вправо массив\n";
-	printArray(a, N);
+	printArray(b, N);
 
-	shiftArrayToTheLeft(a, N);
+	shiftArrayToTheLeft(b,a, N);
 	cout << "Сдвинутый влево массив\n";
 	printArray(a, N);
 
 	system("pause");
 }
-void shiftArrayToTheRight(float a[], int N) //Сдвиг массива вправо
+void shiftArrayToTheRight(float a[],float b[], int N) //Сдвиг массива вправо
 {
-	float last = a[N - 1];
-	for (int i = N - 1;i > 0;i--)
-		a[i] = a[i - 1];
-	a[0] = last;
+	
+	int i = 0;
+	while (i < N)
+	{
+		b[(i + 1 ) % N] = a[i];
+		i++;
+	}
+	
 }
 
-void shiftArrayToTheLeft(float a[], int N) //Сдвиг массива влево
+void shiftArrayToTheLeft(float a[],float b[], int N) //Сдвиг массива влево
 {
-	float first = a[0];
-	for (int i = 0;i <N;i++)
-		a[i] = a[i+1];
-	a[N - 1] = first;
+	int i = 0;
+	while (i < N )
+	{
+		b[(i - 1+N) % N] = a[i];
+		i++;
+	}
 }
 
 void randomArray(float a[], int N, int min, int max)
@@ -57,7 +63,7 @@ void randomArray(float a[], int N, int min, int max)
 	for (int i = 0;i < max;i++)
 	{
 		nom = (rand() % (max - min + 1) + min);
-		denom = ((rand() % (max - min) + min)/5);
+		denom = ((rand() % (max - min) + min)/3); 
 		if (denom < 0) denom -= 1.1;else denom += 1.1;
 		a[i] = nom / denom;
 	}
