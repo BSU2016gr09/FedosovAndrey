@@ -6,7 +6,7 @@ using std::cin;using std::cout;
 const int N = 15;
 void randomArray(float a[], int N);
 void printArray(float a[], int N);
-int countOfRepeatingNumbers(float a[], int N);
+int maxEqualNumbChain(float a[], int N);
 int main()
 {
 	srand(time(0));
@@ -15,7 +15,7 @@ int main()
 	randomArray(a, N);
 	cout << "Исходный массив:\n";
 	printArray(a, N);
-	cout << "Максимальная длина последовательности равных элементов = " << countOfRepeatingNumbers(a, N) << "\n";
+	cout << "Максимальная длина последовательности равных элементов = " << maxEqualNumbChain(a, N) << "\n";
 
 	system("pause");
 }
@@ -37,7 +37,7 @@ void printArray(float a[], int N)
 		cout << a[i] << " ";
 	cout << "\n";
 }
-int countOfRepeatingNumbers(float a[], int N)
+int maxEqualNumbChain(float a[], int N)
 {
 	int count,max = 1,i=0;
 	while (i<N-1) //идём по массиву
