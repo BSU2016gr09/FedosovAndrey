@@ -28,7 +28,7 @@ int main()
 void randomArray(float a[], int N, int min, int max)
 {
 	float nom, denom;
-	for (int i = 0;i < max;i++)
+	for (int i = 0;i < N;i++)
 	{
 		nom = (rand() % (max - min + 1) + min);
 		denom = (rand() % (max - min) + (min + 0.1));
