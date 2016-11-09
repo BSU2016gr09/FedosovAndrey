@@ -66,10 +66,7 @@ double countPolishNotation(char plNot[], int N)
 		}
 		else
 			if (plNot[i] == '*' || plNot[i] == '+' || plNot[i] == '-' || plNot[i] == '/') //если встретили операцию
-			{
-				operation(number1, number2, plNot[i]);
-
-			}
+			operation(number1, number2, plNot[i]);
 		i++;
 	}
 	return number1;
