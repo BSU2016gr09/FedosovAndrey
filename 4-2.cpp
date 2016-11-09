@@ -16,7 +16,7 @@ double averageValue(int moves[]);
 int main()
 {
 	srand(time(0));
-	int max = -1, min = 9999999, moves[5000]; //массив moves только для запоминания ходов(так сказано в условии задачи)
+	int max = -1, min = 9999999, moves[5000];
 	setlocale(LC_ALL, "Russian");
 	for (int x = 0;x <5000; x++)
 	{
