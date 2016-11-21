@@ -42,7 +42,7 @@ void randomShuffle(int a[], int b[], int N)
 		else {
 			while (!a[j])
 			{
-				srand(rand());
+				srand(rand());//зачем это?????
 				j = rand() % N;
 			}
 			b[i] = a[j];a[j] = 0;
