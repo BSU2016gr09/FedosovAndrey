@@ -44,7 +44,7 @@ void shiftArrayToTheRight(float a[],float b[], int N, int k) //сдвинуть 
 	k = k%N;
 		
 		for (int i = 0;i < N;i++)
-			b[(i+k)%N] = a[i];
+			b[(i+k)%N] = a[i];//это НЕ сдвиг, а просто присваивание вновый массив
 }
 
 void shiftArrayToTheLeft(float a[],float b[], int N, int k) //сдвинуть влево
