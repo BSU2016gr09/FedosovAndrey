@@ -35,7 +35,7 @@ int main()
 double averageValue(int moves[])
 {
 	double turns = 0;
-	for (int i = 0;i < 5000;i++)
+	for (int i = 0;i < 5000;i++)//ОЙ, что это вообще такое????? Позор!!!!! Как же ты считаешь среднее...
 		turns += moves[i];
 	return  (turns*1.0) / (5000 * 1.0);
 }
