@@ -57,7 +57,7 @@ double countPolishNotation(char plNot[], int N)
 
 	while (i < N)
 	{
-		if ((int)plNot[i] >= 48 && (int)plNot[i] <= 57) //если встретили число 
+		if ((int)plNot[i] >= 48 && (int)plNot[i] <= 57) //Очевидее было бы plNot[i] >='0' && plNot[i] <='9'
 		{
 			number2 = atof(plNot);
 			updateNotation(plNot, N, len);
