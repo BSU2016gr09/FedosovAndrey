@@ -33,7 +33,7 @@ void randomArray(float a[], int N, int min, int max)
 		nom = (rand() % (max - min + 1) + min);
 		denom = (rand() % (max - min) + (min + 0.1));
 
-		if (nom >= denom) a[i] = nom / denom;else a[i] = denom / nom;
+		if (nom >= denom) a[i] = nom / denom;else a[i] = denom / nom;//жуть, проще никак?????
 
 	}
 }
