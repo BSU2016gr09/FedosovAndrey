@@ -6,12 +6,12 @@ using std::cin;using std::cout;
 Продемонстрировать их работоспособность вызывая их из main. В частности, показать, что стек не переполняется.*/
 const int N = 2;
 
-void pushSym(char sym, char stackSym[], int&top1);
-void pushNumb(double numb, double stackNumb[], int&top2);
-void popSym(int&top1);
-void popNumb(int&top2);
-void printStackSym(char stackSym[]);
-void printStackNumb(double stackNumb[]);
+void pushSym(char sym, char stackSym[], int&top1);//зачем тут имя, отличающееся от стандартного push?
+void pushNumb(double numb, double stackNumb[], int&top2);//зачем тут имя, отличающееся от стандартного push?
+void popSym(int&top1);//Почему передаём НЕ char???? зачем тут имя, отличающееся от стандартного pop?
+void popNumb(int&top2);//зачем тут имя, отличающееся от стандартного pop?
+void printStackSym(char stackSym[]); //Cтоило использовать просто имя  printStack
+void printStackNumb(double stackNumb[]);//Cтоило использовать просто имя  printStack
 int main()
 {
 	char stackSym[N];
