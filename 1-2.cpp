@@ -15,9 +15,9 @@ int main()
 	int n;
 	cout << "Size of arrays=";
 	cin >> n;
-	int* arr1 = new int[n];
-	int* arr2 = new int[n];
-	double* arr_dist = new double[n];
+	int* arr1 = new int[n]; //Где выделение и контроль динамической памяти??? Почему выделение не в отдельной функции???
+	int* arr2 = new int[n];//Где выделение и контроль динамической памяти??? Почему выделение не в отдельной функции???
+	double* arr_dist = new double[n];//Где выделение и контроль динамической памяти??? Почему выделение не в отдельной функции???
 
 
 	randomArr(arr1, n);
