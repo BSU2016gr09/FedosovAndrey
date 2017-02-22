@@ -10,7 +10,7 @@ int main()
 	int n;
 	cout << "Size of array=";
 	cin >> n;
-	int* arr1 = new int[n];
+	int* arr1 = new int[n]; //Где выделение и контроль динамической памяти??? Почему выделение не в отдельной функции???
 
 	cout << "Enter array\n";
 	enterArr(arr1, n);
