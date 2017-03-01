@@ -9,15 +9,16 @@ void printPoints(int* arr1,int* arr2, int n);
 void specialSort(double* arr_dist, int* arr1, int* arr2, int l, int r);
 double dist(int x, int y, int a, int b, int c);
 void countDistances(int* arr1, int* arr2,double* arr_dist,int n);
-void giveMemory(int n);
 int main()
 {
 	srand(time(0));
 	int n;
 	cout << "Size of arrays=";
 	cin >> n;
-	giveMemory(n);
-
+	int* arr1;
+	int* arr2;
+	double* arr_dist;
+	
 	randomArr(arr1, n);
 	randomArr(arr2, n);
 	cout << "Points:\n";
@@ -40,17 +41,17 @@ int main()
 	system("pause");
 
 }
-void giveMemory(int n)
-{
-		try {
-			int* arr1 = new int[n];
-			int* arr2 = new int[n];
-			double* arr_dist = new double[n];
-		}
-		catch (xalloc xa) {
-			cout << "Allocation failure.\n";
-			system("pause");
-		}
+void give_memory(int*& arr1, int*& arr2,double*& arr_dist, int n) {
+
+	try {
+		arr1 = new int[n];
+		arr2 = new int[n];
+		arr_dist = new double[n];
+	}
+	catch (...) {
+		cout << "Allocation failed\n";
+		system("pause");
+	}
 }
 double dist(int x, int y, int a, int b, int c)
 {

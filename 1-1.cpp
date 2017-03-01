@@ -5,15 +5,14 @@ void enterArr(int* arr, int n);
 void printArr(int* arr, int n);
 void qSort(int* arr, int l, int r);
 void specialSort(int* arr, int n);
-void giveMemory(int n);
+void giveMemory(int*& arr, int n);
 int main()
 {
 	int n;
 	cout << "Size of array=";
 	cin >> n;
-	
-	giveMemory(n);
-
+	int* arr1;
+	giveMemory(arr1, n);
 	cout << "Enter array\n";
 	enterArr(arr1, n);
 	specialSort(arr1, n);
@@ -24,18 +23,16 @@ int main()
 	system("pause");
 
 }
-void giveMemory(int n)
-{
+void giveMemory(int*& arr, int n) {
+
 	try {
-		int* arr1 = new int[n];
+		arr = new int[n];
 	}
-	catch (xalloc xa) {
-		cout << "Allocation failure.\n";
+	catch (...) {
+		cout << "Allocation failed\n";
 		system("pause");
 	}
-	
 }
-
 void qSort(int* arr, int l, int r) //l=left,r=right (границы сортировки)
 {
 	int i, j, mid;
