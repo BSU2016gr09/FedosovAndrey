@@ -9,6 +9,7 @@ void printPoints(int* arr1,int* arr2, int n);
 void specialSort(double* arr_dist, int* arr1, int* arr2, int l, int r);
 double dist(int x, int y, int a, int b, int c);
 void countDistances(int* arr1, int* arr2,double* arr_dist,int n);
+void give_memory(int*& arr1, int*& arr2, double*& arr_dist, int n);
 int main()
 {
 	srand(time(0));
