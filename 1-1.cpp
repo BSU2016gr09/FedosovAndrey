@@ -13,6 +13,7 @@ int main()
 	cin >> n;
 	
 	giveMemory(n);
+
 	cout << "Enter array\n";
 	enterArr(arr1, n);
 	specialSort(arr1, n);

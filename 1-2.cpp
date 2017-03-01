@@ -17,6 +17,7 @@ int main()
 	cout << "Size of arrays=";
 	cin >> n;
 	giveMemory(n);
+
 	randomArr(arr1, n);
 	randomArr(arr2, n);
 	cout << "Points:\n";
