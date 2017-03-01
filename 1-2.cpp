@@ -19,7 +19,7 @@ int main()
 	int* arr1;
 	int* arr2;
 	double* arr_dist;
-	
+	give_memory(arr1, arr2, arr_dist, n);
 	randomArr(arr1, n);
 	randomArr(arr2, n);
 	cout << "Points:\n";
