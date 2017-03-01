@@ -6,12 +6,13 @@ void enterArr(int* arr, int&negative, int n);
 void printArr(int* arr, int n);
 void qSort(int* arr, int l, int r);
 void specialSort(int* arr,int negative, int n);
+void giveMemory(int n);
 int main()
 {
 	int n,negative=0;
 	cout << "Size of array=";
 	cin >> n;
-	int* arr = new int[n];
+	giveMemory(n);
 
 	cout << "Enter array\n";
 	enterArr(arr,negative,n);
@@ -22,6 +23,17 @@ int main()
 
 	delete[] arr;
 	system("pause");
+
+}
+void giveMemory(int n)
+{
+	try {
+		int* arr = new int[n];
+	}
+	catch (xalloc xa) {
+		cout << "Allocation failure.\n";
+		system("pause");
+	}
 
 }
 

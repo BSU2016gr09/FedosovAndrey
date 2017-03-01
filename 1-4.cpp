@@ -5,12 +5,13 @@ void enterArr(int* arr, int n);
 void printArr(int* arr, int n);
 void specialSort(int* arr, int n);
 bool isPrime(int num);
+void giveMemory(int n);
 int main()
 {
 	int n;
 	cout << "Size of array=";
 	cin >> n;
-	int* arr1 = new int[n];
+	giveMemory(n);
 
 	cout << "Enter array\n";
 	enterArr(arr1, n);
@@ -21,6 +22,17 @@ int main()
 
 	delete[] arr1;
 	system("pause");
+
+}
+void giveMemory(int n)
+{
+	try {
+		int* arr1 = new int[n];
+	}
+	catch (xalloc xa) {
+		cout << "Allocation failure.\n";
+		system("pause");
+	}
 
 }
 bool isPrime(int num)
