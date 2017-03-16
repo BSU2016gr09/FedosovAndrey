@@ -72,11 +72,11 @@ void give_memory(int**&arr, int rows, int cols)
 		cout << "Error" << endl;
 	}
 	for (int i = 0; i != rows; i++)
-		arr[i] = new int[cols];
+		arr[i] = new int[cols];//ПЛОХО!!!! Ну чего ты эту строку вынес из блока Try???????
 }
 void printArray(int** arr, int rows, int cols)
 {
-	for (int i = 0; i != rows; i++) {
+	for (int i = 0; i != rows; i++) {//не умничай!!!! Побъют!!!! Пиши как все i<rows
 		for (int j = 0; j != cols; j++) {
 			cout.width(3);
 			cout << arr[i][j];
