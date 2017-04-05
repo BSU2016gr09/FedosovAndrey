@@ -134,7 +134,7 @@ void delWord(char**text,char*word,int rows) {
 			text[i] = str;
 			
 		}
-		//delete [] str тут та же ошибка
+		//delete [] str тут та же ошибка //У тебя str локальная внутри цикла
 		str = nullptr;
 	}
 	out << count << endl;
