@@ -51,7 +51,7 @@ float integrate(float a, float b, pf func, float eps) {
 
 			res += func(i)*width;
 		}
-		n++;
+		n++;//Обычно шаг удваивают!!!!!
 		
 	} while (abs(prevres-res) > eps);
 	cout << "Final partioning = " << n << endl<<"Result = ";
