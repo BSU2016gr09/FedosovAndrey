@@ -40,7 +40,7 @@ void help() {
 	cout << "Type 4 for integration x^2\n";
 }
 float integrate(float a, float b, pf func, float eps) {
-	int n = 50;
+	int n = 30;
 	float res = 0, prevres = 0;
 	do
 	{
@@ -51,9 +51,9 @@ float integrate(float a, float b, pf func, float eps) {
 
 			res += func(i)*width;
 		}
-		n++;//Обычно шаг удваивают!!!!!
+		n*=2;
 		
-	} while (abs(prevres-res) > eps);
+	} while (abstprevres-res) > eps);
 	cout << "Final partioning = " << n << endl<<"Result = ";
 	return res;
 }
