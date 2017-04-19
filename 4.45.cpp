@@ -42,7 +42,7 @@ int sumInWord(char* str, int&Max,char* &max) {
 		strcpy(max, str);
 		Max = sum;
 	}
-	str = nullptr; //Если так не делать,то почему-то в функции ниже при изменении str2 изменяется и строка max тоже
+	str = nullptr; //Ты пошагово выполни и поймешь почему эти два указателя ссылаются на одну область почему-то в функции ниже при изменении str2 изменяется и строка max тоже
 	return sum;
 }
 int sumInSentence(char* str) {
