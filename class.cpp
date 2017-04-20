@@ -14,9 +14,11 @@ public:
 	
 	Linear() {//конструктор по умолчанию
 		cout << "Constructor1 is working\n";
-		a = 0;b = 0;x = 0;//почему это при a=b=0 получили х=0? вы что не учились в 6 классе????
+		a = 0;b = 0;//Неправда,там раньше была ненужная инициализация x=0,
+		//но корень уравнения верно считал ,что х может быть любым числом
+		//так что я хорошо отучился в 6ом классе (почему это при a=b=0 получили х=0? вы что не учились в 6 классе????)
 	}
-	Linear(double a,double b) {//конструктор по умолчанию. НЕТ. Это не по умолчанию!!!!
+	Linear(double a,double b) {//конструктор2  (Это не по умолчанию!!!!)
 		cout << "Constructor2 is working\n";
 		this->a = a;
 		this->b = b;
@@ -33,14 +35,14 @@ public:
 		this->b = other.b;
 		return *this;
 	}
-	//оператор сложения УРАВНЕНИЙ????? Как это сложить уравнение?
+	//ну сложение коэфициентов получается,вроде адекватная идея(оператор сложения УРАВНЕНИЙ????? Как это сложить уравнение?)
 	Linear& operator +(Linear addend) {
 		cout << "Operator of addition is working\n";
 		this->a += addend.a;
 		this->b += addend.b;
 		return *this;
 	}
-	//оператор вычитания УРАВНЕНИЙ????? 
+	//(оператор вычитания УРАВНЕНИЙ?????) 
 	Linear& operator -(Linear subtrahend) {
 		cout << "Operator of subtraction is working\n";
 		this->a -= subtrahend.a;
@@ -69,13 +71,12 @@ public:
 		if (!a)
 			if (!b) { cout << "Any number\n";return; }
 			else { cout << "No solution\n"; return; }
-		else
-			x = (double)(-b) / double(a);
-		cout << x << endl;
+		else			;
+		cout << (double)(-b) / double(a) << endl;
 	}
 
 	private:
-		double a, b, x;//а зачем хранить х? И чему он равен, если вы его не инициализируете???? 
+		double a, b;//исправил(а зачем хранить х? И чему он равен, если вы его не инициализируете????) 
 };
 
 void giveMemory(Linear * &tmp);
