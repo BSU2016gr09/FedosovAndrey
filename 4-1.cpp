@@ -70,7 +70,7 @@ void showOUTfile() {//в программе не вызываю,но для пр
 void fillDictionary(map<string,int> &Dictionary) {
 	string buff; //я бы рад заменить это на char* а потом выделить память,или на char[],но map отказывается insert`ить или emplace`ить такие типы
 	while (1) {
-		in >> buff;
+		in >> buff;//Вот это мне не нравится!!!! Ты же не выделяешь тут слова!!!! Разделителителем по умолчанию является тольео \n\t И пробел
 		if (Dictionary.count(buff) > 0) Dictionary.at(buff)++;
 		else Dictionary.emplace(buff, 1);
 		if (in.eof()) break;
