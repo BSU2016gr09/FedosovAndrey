@@ -4,7 +4,7 @@
 #include<fstream>
 #include <map>
 #include <string>
-#include <algorithm>
+#include <algorithm> // для сортировки.Я надеюсь можно уже пользоваться такой,и не писать свой пузырь или qsort
 #include<vector>
 
 //В тексте определить частоту вхождения слов. Вывести "словарь" текста (не обязательно в алфавитном порядке).
