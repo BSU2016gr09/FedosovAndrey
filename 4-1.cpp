@@ -1,8 +1,12 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_NONSTDC_NO_DEPRECATE
 #include <iostream>
 #include<fstream>
 #include <map>
-#include <string>//я готов за это отхватить))
+#include <string>
+#include <algorithm>
+#include<vector>
+
 //В тексте определить частоту вхождения слов. Вывести "словарь" текста (не обязательно в алфавитном порядке).
 using namespace std;
 
@@ -12,13 +16,16 @@ void showINfile();
 void checkFiles();
 void showOUTfile();
 void fillDictionary(map<string,int>&);
-void writeDictionary(map<string,int>);
+void writeDictionary(vector <pair<string, int>>&); //по ссылке ведь оптимальнее передавать,т.к. не создаётся копия и,следовательно,не занимается лишнее место?
+bool compare(const pair<string, int>&i, const pair<string, int>&j);
 void main() { 
 	
 	checkFiles();
 	map <string, int> Dictionary;
 	fillDictionary(Dictionary);
-	writeDictionary(Dictionary);
+	vector <pair<string, int>> duplicate(Dictionary.begin(), Dictionary.end());
+	sort(duplicate.begin(), duplicate.end(), compare);
+	writeDictionary(duplicate);
 	//showINfile();
 	//showOUTfile();
 	in.close();
@@ -26,7 +33,10 @@ void main() {
 	system("pause");
 }
 
-
+bool compare(const pair<string, int>&i, const pair<string, int>&j)
+{
+	return i.second > j.second;
+}
 
 void checkFiles()
 {
@@ -68,16 +78,25 @@ void showOUTfile() {//в программе не вызываю,но для пр
 	fclose(f);
 }
 void fillDictionary(map<string,int> &Dictionary) {
-	string buff; //я бы рад заменить это на char* а потом выделить память,или на char[],но map отказывается insert`ить или emplace`ить такие типы
+	string str; 
+	const char* delim = " ,!'@#$%^“”&*()-\\_=+/{}[]–\"\'.°";//не нашёл я как добавить разделители сюда in>>str;но зато теперь построчный ввод
 	while (1) {
-		in >> buff;//Вот это мне не нравится!!!! Ты же не выделяешь тут слова!!!! Разделителителем по умолчанию является тольео \n\t И пробел
-		if (Dictionary.count(buff) > 0) Dictionary.at(buff)++;
-		else Dictionary.emplace(buff, 1);
+		getline(in,str);
+		char *dup = strdup(str.c_str());
+		char *buff = strtok(dup,delim);
+		while (buff) {
+			string word(buff);
+			if (Dictionary.count(word) > 0) Dictionary.at(word)++;
+			else Dictionary.emplace(word, 1);
+			buff = strtok(NULL,delim);
+		}
 		if (in.eof()) break;
+		free(dup);buff = nullptr;dup = nullptr;
+		
 	}
 }
 
-void writeDictionary(map<string, int> Dictionary) {
+void writeDictionary(vector <pair<string, int>>& Dictionary) {
 	out << "Resulting dictionary:\n";
 	for (auto it = Dictionary.begin(); it != Dictionary.end(); ++it)
 	{
