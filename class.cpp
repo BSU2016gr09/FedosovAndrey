@@ -21,7 +21,7 @@ public:
 	}
 	Linear(int size) {//конструктор по умолчанию
 		cout << "Constructor2 is working\n";
-		if (size > 26) { cout << "Size set on 25(" << size << " is more than maxsize(no more letters))\n"; size = 26; }
+		if (size > 26) { cout << "Size set on 26(" << size << " is more than maxsize(no more letters))\n"; size = 26; }
 		coeff = new int[size];
 		for (int i = 0;i < size;i++) coeff[i] = 0;
 		this->size = size;
