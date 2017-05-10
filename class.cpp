@@ -7,123 +7,134 @@
 Проинициализировать некоторые из них теми объетами, которые уже есть, а некоторые проинициализировать с помощью оператора, NEW.
 После этого, в main выполнить пару-тройку действий с объектами и с указателями (присвоение, сумма, удаление...) чтобы показать, что все методы работают!*/
 using namespace std;
-
+/*Создать класс линейных уравнений с использованием динамической памяти(выбор количества неизвестных)*/
 class Linear {
 	
 public:
 	
 	Linear() {//конструктор по умолчанию
 		cout << "Constructor1 is working\n";
-		a = 0;b = 0;//Неправда,там раньше была ненужная инициализация x=0,
-		//но корень уравнения верно считал ,что х может быть любым числом
-		//так что я хорошо отучился в 6ом классе (почему это при a=b=0 получили х=0? вы что не учились в 6 классе????)
+		coeff = new int[2];
+		coeff[0] = 0;coeff[1] = 0;
+		size = 2;
+	
 	}
-	Linear(double a,double b) {//конструктор2  (Это не по умолчанию!!!!)
+	Linear(int size) {//конструктор по умолчанию
 		cout << "Constructor2 is working\n";
-		this->a = a;
-		this->b = b;
+		if (size > 26) { cout << "Size set on 25(" << size << " is more than maxsize(no more letters))\n"; size = 26; }
+		coeff = new int[size];
+		for (int i = 0;i < size;i++) coeff[i] = 0;
+		this->size = size;
+	
 	}
 	~Linear() {//деструктор по умолчанию
-		cout << "Destructor is working\n";
-		
+		cout << "Destructor is working\n";system("pause");
+		delete[] coeff;
+		coeff = nullptr;
 	}
 	
 	//оператор присваивания
 	Linear& operator =(Linear &other) {
 		cout << "Operator of equality is working\n";
-		this->a = other.a;
-		this->b = other.b;
+		int tempSize = (other.size>this->size ? this->size : other.size); //берём меньший размер,чтоб не присваивать в несуществующие ячейки
+		for (int i = 0;i < tempSize;i++)
+		this->coeff[i] = other.coeff[i];
 		return *this;
 	}
-	//ну сложение коэфициентов получается,вроде адекватная идея(оператор сложения УРАВНЕНИЙ????? Как это сложить уравнение?)
-	Linear& operator +(Linear addend) {
+	//оператор сложения
+	Linear& operator +(Linear&addend) {
+		int tempSize = (addend.size>this->size ? this->size : addend.size); //берём меньший размер,чтоб не прибавлять к несуществующим кф
 		cout << "Operator of addition is working\n";
-		this->a += addend.a;
-		this->b += addend.b;
+		for (int i = 0;i < tempSize;i++)
+			this->coeff[i] +=addend.coeff[i];
 		return *this;
 	}
-	//(оператор вычитания УРАВНЕНИЙ?????) 
-	Linear& operator -(Linear subtrahend) {
-		cout << "Operator of subtraction is working\n";
-		this->a -= subtrahend.a;
-		this->b -= subtrahend.b;
+	//оператор вычитания
+	Linear& operator -(Linear&subtrahend) {
+		int tempSize = (subtrahend.size>this->size?this->size:subtrahend.size); //берём меньший размер,чтоб не отнимать от несуществующих кф
+		for (int i = 0;i < tempSize;i++)
+			this->coeff[i] -= subtrahend.coeff[i];
 		return *this;
 	}
-	
-	void setFirstCF(double a) {
-		this->a = a;
+
+	void setCoeffs() {
+		cout << "Type coefficients\n";
+		for (int i = 0;i < size;i++) {
+			cout << char(i + 97) << "=";
+			cin >> coeff[i];
+		}
+		cout << endl;
 	}
-	void setSecondCF(double b) {
-		this->b = b;
+	void getCoeffs() {
+		for (int i = 0;i < size;i++) 
+			cout << char(i + 97) << "=" << coeff[i] << endl;
 	}
-	double getFirstCF() {
-		return (*this).a;
-	}
-	double getSecondCF() {
-		return (*this).b;
-	}
-	void printEquation() {
-	if (b>=0)	cout << a << "x+" << b << "=0\n"; 
-	else cout << a << "x" << b << "=0\n";
-	}
-	void root() {
-		cout << "Finding root...\n";
-		if (!a)
-			if (!b) { cout << "Any number\n";return; }
-			else { cout << "No solution\n"; return; }
-		else			;
-		cout << (double)(-b) / double(a) << endl;
+	void print() {
+		int letter = 97;
+		cout << coeff[0] << char(letter++);
+		for (int i = 1;i < size;i++) {
+			cout <<"*"<<coeff[i] <<char(letter);
+			letter++;
+		}
+		cout << "=0\n";
+		
 	}
 
 	private:
-		double a, b;//исправил(а зачем хранить х? И чему он равен, если вы его не инициализируете????) 
+		int*coeff;
+		int size;
 };
+
 
 void giveMemory(Linear * &tmp);
 void delMem(Linear * &tmp);
 
 void main() {
-	cout << "EQUATION1" << endl;
+	cout << "EQ1:\n";
 	Linear eq1;
-	eq1.printEquation();
-	eq1.root();
-	cout << endl << endl;
+	eq1.setCoeffs();
+	eq1.print();
+	cout << endl;
 
-	cout << "EQUATION2" << endl;
-	Linear eq2(4, 1);
-	cout << "a=" << eq2.getFirstCF() << endl;
-	cout << "b=" << eq2.getSecondCF() << endl;
-	eq2.printEquation();
-	eq2.root();
-	cout << endl << endl;
+	cout << "EQ2:\n";
+	cout << "How many unknows do you want?\n";
+	int unknows;cin >> unknows;
+	Linear eq2(unknows);
+	eq2.getCoeffs();
+	eq2.setCoeffs();
+	cout << "Eq2 before adding:\n";
+	eq2.print();
+	eq2 = eq2 + eq1;
+	cout << "Eq2 after\n";
+	eq2.print();
+	cout << endl;
+	
 
-	cout << "EQUATION3" << endl;
-	Linear eq3;
-	eq3.setFirstCF(5); //первый кф ставлю 5
-	eq3=eq3+eq2; //инициализирую второй кф суммой с предыдущим уравнением
-	cout << "a=" << eq3.getFirstCF() << endl;
-	cout << "b=" << eq3.getSecondCF() << endl;
-	eq2.setFirstCF(2); 
-	eq2.setSecondCF(6);
-	eq3=eq3-eq2; //работа разности
-	eq3.printEquation();
-	eq3.root();
-	cout << endl << endl;
+	cout << "EQ3:\n";
+	Linear eq3(4);
+	eq3.setCoeffs();
+	cout << "Before substraction:\n";
+	eq3.print();
+	eq3 = eq1 - eq2;
+	cout << "After:\n";
+	eq3.print();
+	cout << endl;
 
-	cout << "EQUATION4" << endl;
-	Linear* eq4 = &eq3;
-	eq4->printEquation();
-	eq4->root();
-	cout << endl << endl;
+	cout << "EQ4:\n";
+	Linear *eq4 = &eq2;
+	eq4->print();
+	cout << endl;
 
-	cout << "EQUATION5" << endl;
-	Linear* eq5;
+	cout << "EQ5:\n";
+	Linear *eq5;
 	giveMemory(eq5);
-	(*eq5) = *eq4 + eq2;
-	eq5->printEquation();
-	eq5->root();
-	
-	
+	cout << "Before substraction:\n";
+	eq5->print();
+	*eq5 = *eq5 - *eq4;
+	cout << "After:\n";
+	eq5->print();
+	cout << endl;
+
 	system("pause");
 }
 void giveMemory(Linear * &tmp) {
