@@ -76,24 +76,10 @@ public:
 
 	}
 	char* getAuthorsSurname() {
-		char* srn;
-		giveMemory(srn, 255);
-		strcpy(srn, surname);
-		return srn;
-
-		delete[]srn;
-		srn = nullptr;
-
+		return surname;
 	}
 	char* getTitle() {
-		char* ttl;
-		giveMemory(ttl, 100);
-		strcpy(ttl,title);
-		return ttl;
-
-		delete[]ttl;
-		ttl= nullptr;
-
+		return title;
 	}
 	int getCost() {
 		return cost;
