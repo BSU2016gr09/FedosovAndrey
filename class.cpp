@@ -143,7 +143,7 @@ void giveMemory(Linear * &tmp) {
 	}
 	catch (...) {
 		cout << "Allocation fault\n";
-		system("pause");
+		//system("pause");
 	}
 }
 
